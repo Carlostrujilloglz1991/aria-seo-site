@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""Regenerate sitemap.xml + robots.txt for the SEO site from the current .html files.
+
+Run this any time articles are added. It replaces the hand-maintained sitemap that
+was drifting out of date (last drift: 36 articles missing from the index -> not
+crawled by Google). Base URL is read from _config.yml so it stays in sync.
+
+Usage:  python generate_sitemap.py
+"""
+from __future__ import annotations
+
+import re
+from datetime import datetime, timezone
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+
+# Low-priority static pages get a different changefreq/priority.
+STATIC_LOW = {"about.html", "affiliate-disclosure.html", "privacy.html", "contact.html"}
+# Files that should never appear in the sitemap.
+EXCLUDE = {"404.html", "google-verify.html"}
+
+
+def read_base_url() -> str:
+    """Build the canonical base URL from _config.yml (url + baseurl)."""
+    url, baseurl = "", ""
+    cfg = HERE / "_config.yml"
+    if cfg.exists():
+        text = cfg.read_text(encoding="utf-8", errors="replace")
+        m = re.search(r"^url:\s*(\S+)", text, re.M)
+        if m:
+            url = m.group(1).strip().rstrip("/")
+        m = re.search(r"^baseurl:\s*(\S+)", text, re.M)
+        if m:
+            baseurl = m.group(1).strip().strip('"').strip("'")
+    if not url:
+        url = "https://carlostrujillo.github.io"
+    if baseurl and not baseurl.startswith("/"):
+        baseurl = "/" + baseurl
+    return f"{url}{baseurl}".rstrip("/") + "/"
+
+
+def build() -> tuple[int, str]:
+    base = read_base_url()
+    html_files = sorted(
+        p.name for p in HERE.glob("*.html") if p.name not in EXCLUDE
+    )
+
+    rows: list[str] = []
+    for name in html_files:
+        mtime = datetime.fromtimestamp(
+            (HERE / name).stat().st_mtime, tz=timezone.utc
+        ).strftime("%Y-%m-%d")
+        if name == "index.html":
+            loc = base  # homepage = clean root URL
+            changefreq, priority = "weekly", "1.0"
+        elif name in STATIC_LOW:
+            loc = base + name
+            changefreq, priority = "yearly", "0.3"
+        else:
+            loc = base + name
+            changefreq, priority = "monthly", "0.8"
+        rows.append(
+            f"  <url><loc>{loc}</loc><lastmod>{mtime}</lastmod>"
+            f"<changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>"
+        )
+
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(rows)
+        + "\n</urlset>\n"
+    )
+    (HERE / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+
+    robots = (
+        "User-agent: *\n"
+        "Allow: /\n\n"
+        f"Sitemap: {base}sitemap.xml\n"
+    )
+    (HERE / "robots.txt").write_text(robots, encoding="utf-8")
+
+    return len(html_files), base
+
+
+if __name__ == "__main__":
+    n, base = build()
+    print(f"sitemap.xml regenerated: {n} URLs | base={base}")
+    print("robots.txt written")

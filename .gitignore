@@ -1,0 +1,20 @@
+# --- ARIA SEO site: keep deploy artifacts out of the GitHub Pages repo ---
+# Python caches / bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Build / generator scratch + marker files
+*.tmp
+*.done
+*.bak
+*.bak_*
+*.repaired.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local logs
+*.log
