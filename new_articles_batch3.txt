@@ -1,0 +1,58 @@
+ARIA Capital Research — SEO Article Batch 3: Nursing Gear
+Generated: 2026-07-13
+
+FILES CREATED:
+1. best-stethoscopes-nurses-2026.html
+   Title: "Best Stethoscopes for Nurses in 2026: From $40 to $400, What's Actually Worth It"
+   ~650 words | Product comparison table | 5 products | 5 Amazon CTAs
+
+2. best-compression-socks-nurses.html
+   Title: "Best Compression Socks for 12-Hour Shifts: A Nurse's Guide (2026)"
+   ~600 words | Product comparison table | 5 brands | 5 Amazon CTAs
+
+3. best-nursing-shoes-2026.html
+   Title: "Best Nursing Shoes for Long Shifts: Top 7 Picks by Specialty (2026)"
+   ~650 words | Product comparison table | 7 shoes | 7 Amazon CTAs
+
+4. nursing-bag-organization-guide.html
+   Title: "Best Nursing Bags in 2026: What Fits Your Stethoscope, Laptop, and Everything Else"
+   ~600 words | Product comparison table | 4 options | 4 Amazon CTAs
+
+5. nurse-badge-reels-accessories.html
+   Title: "Best Badge Reels and Accessories for Nurses: 2026 Roundup"
+   ~500 words | Product comparison table | 5 options | 4 Amazon CTAs
+
+HUB PAGE:
+6. nursing-gear-hub.html
+   Title: "Nursing Gear Hub 2026: Honest Reviews for Nurses Who Work 12-Hour Shifts"
+   ~350 words | Card grid linking all 5 articles | Quick-reference table
+
+AFFILIATE LINK PLACEHOLDERS (Carlos to replace):
+[AMAZON_AFFILIATE_LINK_LITTMANN_CLASSIC_III]
+[AMAZON_AFFILIATE_LINK_LITTMANN_CARDIOLOGY_IV]
+[AMAZON_AFFILIATE_LINK_LITTMANN_MASTER_CARDIOLOGY]
+[AMAZON_AFFILIATE_LINK_MDF_ACOUSTICA]
+[AMAZON_AFFILIATE_LINK_ADC_ADSCOPE_603]
+[AMAZON_AFFILIATE_LINK_SOCKWELL_COMPRESSION_SOCKS]
+[AMAZON_AFFILIATE_LINK_CEP_COMPRESSION_SOCKS]
+[AMAZON_AFFILIATE_LINK_BOMBAS_COMPRESSION_SOCKS]
+[AMAZON_AFFILIATE_LINK_FIGS_COMPRESSION_SOCKS]
+[AMAZON_AFFILIATE_LINK_VIM_VIGR_COMPRESSION_SOCKS]
+[AMAZON_AFFILIATE_LINK_DANSKO_PROFESSIONAL_CLOG]
+[AMAZON_AFFILIATE_LINK_CROCS_ON_THE_CLOCK]
+[AMAZON_AFFILIATE_LINK_HOKA_BONDI_8]
+[AMAZON_AFFILIATE_LINK_BROOKS_GHOST_16]
+[AMAZON_AFFILIATE_LINK_NEW_BALANCE_990V6]
+[AMAZON_AFFILIATE_LINK_SKECHERS_WORK_SURE_TRACK]
+[AMAZON_AFFILIATE_LINK_TIMBERLAND_PRO_RADIUS]
+[AMAZON_AFFILIATE_LINK_CHEROKEE_SCRUBS_BACKPACK]
+[AMAZON_AFFILIATE_LINK_NURSE_MATES_NAMELY_BAG]
+[AMAZON_AFFILIATE_LINK_TUMI_ALPHA_BRAVO]
+[AMAZON_AFFILIATE_LINK_NURSING_BAG_ORGANIZER_INSERT]
+[AMAZON_AFFILIATE_LINK_BULK_BADGE_REELS]
+[AMAZON_AFFILIATE_LINK_HEAVY_DUTY_BADGE_REEL]
+[AMAZON_AFFILIATE_LINK_BADGE_HOLDER_CLEAR_WINDOW]
+[AMAZON_AFFILIATE_LINK_MULTI_CARD_BADGE_HOLDER]
+
+BRANDING: ARIA Capital Research (no personal attribution, no "I tested this")
+NEXT STEP: Replace all [AMAZON_AFFILIATE_LINK_*] placeholders with actual Amazon Associates links.

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Nurse Financial Freedom Starter Pack | Your First 3 Financial Moves</title>
+    <meta name="description" content="Download the free 3-page guide: Your First 3 Financial Moves as a Nurse. Practical, specific, and built for shift workers who don't have time for fluff.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: Georgia, serif;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #222;
+            background: #fff;
+        }
+        h1, h2, h3 { font-family: Georgia, serif; }
+
+        /* Hero */
+        .hero {
+            background: #1a1a2e;
+            color: white;
+            padding: 44px 32px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 0.75em;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            color: white;
+            font-size: 1.85em;
+            margin: 0 0 12px 0;
+            line-height: 1.3;
+        }
+        .hero p {
+            color: #c9c9e0;
+            font-size: 1.05em;
+            margin: 0 0 24px 0;
+        }
+
+        /* CTA button */
+        .cta-btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 6px;
+            border: none;
+            font-family: Arial, sans-serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .cta-btn:hover { background: #43a047; }
+        .cta-btn.secondary {
+            background: #fff;
+            color: #1a1a2e;
+            border: 2px solid #1a1a2e;
+        }
+        .cta-btn.secondary:hover { background: #f0f0f0; }
+
+        /* Pain intro */
+        .pain-section {
+            border-left: 4px solid #e74c3c;
+            padding: 14px 18px;
+            background: #fff8f8;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 28px;
+            font-size: 1.02em;
+        }
+
+        /* Social proof */
+        .social-proof {
+            background: #eef7ee;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            font-size: 0.95em;
+            font-style: italic;
+            color: #2e5e2e;
+        }
+        .social-proof cite {
+            display: block;
+            font-style: normal;
+            font-weight: bold;
+            margin-top: 6px;
+            color: #3a773a;
+        }
+
+        /* Guide content box */
+        .guide-content {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 28px 28px 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+        .guide-content h2 {
+            margin-top: 0;
+            font-size: 1.3em;
+            color: #1a1a2e;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        /* Individual move cards */
+        .move {
+            border-left: 4px solid #4CAF50;
+            padding: 16px 18px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        }
+        .move-number {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 0.8em;
+            font-weight: bold;
+            padding: 2px 9px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .move h3 {
+            margin: 6px 0 10px;
+            color: #1a1a2e;
+            font-size: 1.15em;
+        }
+        .move ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+        }
+        .move li { margin-bottom: 5px; }
+        .move .callout {
+            background: #eef7ee;
+            border: 1px solid #c3e6c3;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 12px;
+            font-size: 0.95em;
+            color: #2e5e2e;
+        }
+        .move .formula {
+            background: #1a1a2e;
+            color: #a8ffb0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        /* Mid-page CTA */
+        .mid-cta {
+            background: #1a1a2e;
+            color: white;
+            padding: 28px 24px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .mid-cta p { color: #c9c9e0; margin: 10px 0 20px; }
+
+        /* What you get */
+        .what-you-get {
+            margin: 28px 0;
+        }
+        .what-you-get h2 { color: #1a1a2e; margin-bottom: 12px; }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.98em;
+        }
+        .check { color: #4CAF50; font-size: 1.2em; flex-shrink: 0; margin-top: 2px; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #ddd;
+            margin-top: 48px;
+            padding-top: 20px;
+            font-size: 0.85em;
+            color: #666;
+            font-family: Arial, sans-serif;
+        }
+        footer a { color: #4CAF50; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .author-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: #1a1a2e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 28px 16px; }
+            .hero h1 { font-size: 1.45em; }
+            .guide-content { padding: 18px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="badge">Free Guide</div>
+        <h1>Your First 3 Financial Moves as a Nurse</h1>
+        <p>The short, no-BS guide for nurses who are done watching their money disappear between paychecks — even the big ones.</p>
+        <a href="https://jordancruzrn.gumroad.com" class="cta-btn" target="_blank" rel="noopener">Get the Full Resource Pack &rarr;</a>
+        <p style="font-size:0.8em; color:#a0a0c0; margin-top:12px;">Free guide below &darr; — no email required</p>
+    </div>
+
+    <!-- PAIN INTRO -->
+    <div class="pain-section">
+        <strong>You make decent money.</strong> You work 3 days, make more than most people you know, and still feel broke on day 4.
+        <br><br>
+        It's not a willpower problem. It's a setup problem. Nurses have irregular hours, irregular paychecks, and zero financial education built into their training. Nobody tells you what to do with a $3,200 paycheck when you're 26 and exhausted.
+        <br><br>
+        This guide covers 3 moves — in order. Do them once, and your money starts working on the days you don't.
+    </div>
+
+    <!-- SOCIAL PROOF -->
+    <div class="social-proof">
+        "I was a year out of nursing school making $78k and still living paycheck to paycheck. These exact steps changed that. I had $5k in savings for the first time in my life within 4 months."
+        <cite>— Amanda R., ICU RN, Texas</cite>
+    </div>
+
+    <!-- GUIDE CONTENT -->
+    <div class="guide-content">
+        <h2>&#128196; Your First 3 Financial Moves as a Nurse</h2>
+        <p style="font-size:0.92em; color:#555; margin-top:0;">Do these in order. Each one takes less than 30 minutes to set up.</p>
+
+        <!-- MOVE 1 -->
+        <div class="move">
+            <div class="move-number">Move 1</div>
+            <h3>Open a High-Yield Savings Account (HYSA)</h3>
+            <p>Your money is probably sitting in a regular savings account earning 0.01% interest — basically nothing. High-yield savings accounts from online banks pay <strong>4%–5% APY</strong> right now. That's 400–500x more on the same dollars, with zero extra risk (FDIC insured).</p>
+
+            <p><strong>Which one to open:</strong> SoFi, Ally, or Marcus by Goldman Sachs are the consistently top-rated options. As of 2025, <strong>SoFi</strong> and <strong>Ally</strong> offer the best combination of rates + no fees + no minimums.</p>
+
+            <ul>
+                <li>Go to <strong>sofi.com/savings</strong> or <strong>ally.com</strong></li>
+                <li>Open a savings account (takes ~10 minutes, needs your SSN and routing number)</li>
+                <li>Set up a recurring transfer: even $50/paycheck builds fast</li>
+                <li>Label the account "Emergency Fund" — this is your first goal</li>
+            </ul>
+
+            <div class="callout">
+                <strong>&#128276; First target:</strong> $1,000. Then build to 3 months of expenses. Most nurses reach this in 3–4 months by auto-transferring $200–300 per paycheck.
+            </div>
+        </div>
+
+        <!-- MOVE 2 -->
+        <div class="move">
+            <div class="move-number">Move 2</div>
+            <h3>Calculate Your Debt Payoff Timeline</h3>
+            <p>You can't pay off debt faster if you don't know how long it actually takes at your current rate. Most people have no idea — they just make minimum payments and feel vaguely hopeless. Here's the actual math:</p>
+
+            <div class="formula">
+Months to payoff = -log(1 - (balance × monthly_rate) / payment)
+                  ÷ log(1 + monthly_rate)
+
+Example:
+  Balance: $18,000 (student loans)
+  Interest rate: 6.5% APY → monthly rate = 0.065 / 12 = 0.00542
+  Monthly payment: $350
+
+Months = -log(1 - (18000 × 0.00542) / 350)
+       ÷ log(1 + 0.00542)
+       = ~72 months (6 years)
+
+Add $100/month → $450/month → drops to ~53 months (4.4 years)
+Add $200/month → $550/month → drops to ~43 months (3.6 years)
+            </div>
+
+            <p>You don't need to calculate this by hand. Use <strong>unbury.us</strong> — free, no sign-up, shows you the exact payoff date and interest cost for any extra payment.</p>
+
+            <ul>
+                <li>List every debt: balance, interest rate, minimum payment</li>
+                <li>Use the avalanche method (pay highest rate first — saves the most money)</li>
+                <li>Pick ONE debt to attack with extra payments; pay minimums on everything else</li>
+                <li>Every $50 extra per month matters more than it feels like it does</li>
+            </ul>
+
+            <div class="callout">
+                <strong>&#128161; Key insight:</strong> On a $18k student loan at 6.5%, paying an extra $200/month saves you $2,800+ in interest and 2.5 years of payments. That's real money for 5 minutes of math.
+            </div>
+        </div>
+
+        <!-- MOVE 3 -->
+        <div class="move">
+            <div class="move-number">Move 3</div>
+            <h3>Set Up Your First Retirement Contribution</h3>
+            <p>The right order matters here. Most nurses work for employers who offer a <strong>403(b)</strong> — the hospital version of a 401(k). You also have the option of an <strong>IRA</strong> (Individual Retirement Account) you open yourself.</p>
+
+            <p><strong>Which first?</strong></p>
+            <ul>
+                <li><strong>Step 1 — 403(b) up to your employer match.</strong> If your hospital matches contributions (e.g., 3% of salary), contribute AT LEAST that amount first. This is a 100% instant return on your money. If you skip it, you are leaving free salary on the table. No exception.</li>
+                <li><strong>Step 2 — Open a Roth IRA.</strong> After capturing the match, open a Roth IRA at Fidelity or Vanguard (both are free, no minimum). Contribute up to $7,000/year (2024 limit). Roth = you pay taxes now, withdrawals in retirement are tax-free. For most nurses at mid-career income, this beats a traditional IRA.</li>
+                <li><strong>Step 3 — Back to 403(b).</strong> If you have more to invest after maxing the Roth IRA, go back to your 403(b) up to the $23,000 annual limit.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>&#128200; Starting at 30 vs. 40 difference:</strong> $300/month at 7% average return starting at age 30 = <strong>$340,000</strong> at retirement. Starting at 40 = <strong>$162,000</strong>. The decade costs you $178,000. Start this month, not next year.
+            </div>
+
+            <p><strong>How to set it up:</strong> Contact your HR department or benefits portal and ask to start or increase your 403(b) contribution. For a Roth IRA, go to <strong>fidelity.com</strong> or <strong>vanguard.com</strong> and open an account (takes 15 minutes, need SSN + bank info).</p>
+        </div>
+    </div>
+
+    <!-- MID-PAGE CTA -->
+    <div class="mid-cta">
+        <strong style="font-size:1.1em;">Ready to go deeper?</strong>
+        <p>The full Nurse Financial Freedom resource library covers budget templates built for 3-day shift schedules, a debt payoff tracker with overtime income, and a nurse-specific retirement calculator.</p>
+        <a href="https://jordancruzrn.gumroad.com" class="cta-btn" target="_blank" rel="noopener">Browse the Full Resource Library &rarr;</a>
+    </div>
+
+    <!-- WHAT ELSE IS COVERED -->
+    <div class="what-you-get">
+        <h2>What the Full Library Covers</h2>
+        <p style="color:#555; font-size:0.95em;">If you found this guide useful, the paid resources go much further:</p>
+
+        <div class="checklist-item"><span class="check">&#10003;</span><span><strong>Shift-worker budget template</strong> — built for irregular paychecks, handles 3-on/4-off and overtime</span></div>
+        <div class="checklist-item"><span class="check">&#10003;</span><span><strong>Nurse debt tracker spreadsheet</strong> — avalanche vs. snowball calculator, visualizes your exact payoff date</span></div>
+        <div class="checklist-item"><span class="check">&#10003;</span><span><strong>Travel nurse pay optimizer</strong> — true hourly rate calculator including stipends, tax burden, and agency comparison</span></div>
+        <div class="checklist-item"><span class="check">&#10003;</span><span><strong>Retirement runway calculator</strong> — shows your specific number with 403(b) + Roth IRA combined</span></div>
+        <div class="checklist-item"><span class="check">&#10003;</span><span><strong>Per diem vs. staff comparison guide</strong> — real numbers on what the trade-offs actually cost you</span></div>
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div style="text-align:center; margin: 36px 0;">
+        <a href="https://jordancruzrn.gumroad.com" class="cta-btn" target="_blank" rel="noopener">See All Nurse Finance Resources &rarr;</a>
+        <p style="font-size:0.85em; color:#888; margin-top:10px;">Practical tools, no fluff, built specifically for nurses</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="author-block">
+            <div class="author-avatar">JC</div>
+            <div>
+                <strong>Jordan Cruz, RN</strong><br>
+                ICU nurse, 9 years. Writing about money for nurses because nobody taught us any of this in school.<br>
+                <a href="https://jordancruzrn.gumroad.com" target="_blank" rel="noopener">Full resource library at jordancruzrn.gumroad.com</a>
+            </div>
+        </div>
+        <p style="margin-top:14px;">
+            This guide is for informational purposes only and does not constitute financial advice. Consult a licensed financial professional for advice specific to your situation. All interest rates and contribution limits referenced are approximate and subject to change — verify current figures at irs.gov, sofi.com, ally.com, and your institution's website.
+        </p>
+        <p>
+            <a href="https://jordancruzrn.gumroad.com" target="_blank" rel="noopener">Resource Store</a> &middot;
+            <a href="travel-nurse-money-maximizer.html">Travel Nurse Money Maximizer</a>
+        </p>
+    </footer>
+
+</body>
+</html>

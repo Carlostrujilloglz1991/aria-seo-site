@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nurse FI Calculator — Find Your Financial Independence Date | ARIA Capital Holdings</title>
+  <meta name="description" content="Free nurse financial independence calculator. Enter your salary, expenses, and loans to see your FI number, years to FI, and what-if scenarios." />
+  <link rel="canonical" href="https://ariacapitalholdings.com/nurse-fi-calculator" />
+
+  <style>
+    /* ── Reset & Root ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:         #0d1117;
+      --surface:    #161b22;
+      --surface2:   #1c2128;
+      --border:     #30363d;
+      --text:       #e6edf3;
+      --muted:      #8b949e;
+      --accent:     #58a6ff;
+      --accent-dim: #1f6feb;
+      --green:      #3fb950;
+      --yellow:     #d29922;
+      --purple:     #bc8cff;
+      --radius:     10px;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand { font-weight: 700; font-size: .95rem; color: var(--accent); }
+    header nav { margin-left: auto; display: flex; gap: 18px; font-size: .82rem; }
+    header nav a { color: var(--muted); text-decoration: none; }
+    header nav a:hover { color: var(--text); }
+
+    /* ── Page ── */
+    .page { max-width: 940px; margin: 0 auto; padding: 36px 20px 80px; }
+
+    /* ── Hero ── */
+    .hero { text-align: center; margin-bottom: 36px; }
+    .hero h1 { font-size: 1.9rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+    .hero p { color: var(--muted); font-size: .95rem; max-width: 560px; margin: 0 auto; }
+
+    /* ── 2-col grid ── */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 700px) { .calc-grid { grid-template-columns: 1fr; } }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 26px;
+    }
+    .card-title {
+      font-size: .75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .8px; color: var(--muted); margin-bottom: 18px;
+    }
+
+    /* ── Form ── */
+    .field { margin-bottom: 16px; }
+    label { display: block; font-size: .82rem; color: var(--muted); margin-bottom: 5px; font-weight: 500; }
+    label .tip { font-weight: 400; font-size: .75rem; color: #6e7681; }
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-prefix, .input-suffix { position: absolute; color: var(--muted); font-size: .88rem; pointer-events: none; }
+    .input-prefix { left: 11px; }
+    .input-suffix { right: 11px; }
+    input[type="number"] {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: .93rem;
+      padding: 8px 11px;
+      outline: none;
+      transition: border-color .15s;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus { border-color: var(--accent); }
+    .has-prefix input { padding-left: 26px; }
+    .has-suffix input { padding-right: 30px; }
+
+    /* ── Range ── */
+    .range-wrap { display: flex; align-items: center; gap: 10px; }
+    input[type="range"] {
+      flex: 1;
+      height: 6px;
+      border-radius: 6px;
+      background: var(--border);
+      cursor: pointer;
+      border: none;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 2px solid var(--bg);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 2px solid var(--bg);
+    }
+    .range-value { min-width: 42px; text-align: right; font-size: .88rem; font-weight: 700; color: var(--accent); }
+
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+    /* ── Big numbers ── */
+    .big-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 26px; }
+    .big-num { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 16px; }
+    .big-num .lbl { font-size: .72rem; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 4px; }
+    .big-num .val { font-size: 1.55rem; font-weight: 800; line-height: 1.15; }
+    .big-num .sub { font-size: .75rem; color: var(--muted); margin-top: 3px; }
+    .c-accent { color: var(--accent); }
+    .c-green  { color: var(--green);  }
+    .c-yellow { color: var(--yellow); }
+    .c-purple { color: var(--purple); }
+
+    /* ── Progress ── */
+    .prog-wrap { margin-bottom: 26px; }
+    .prog-top { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); margin-bottom: 6px; }
+    .prog-track { background: var(--border); border-radius: 8px; height: 14px; overflow: hidden; }
+    .prog-fill { height: 14px; border-radius: 8px; background: linear-gradient(90deg, var(--accent-dim), var(--accent)); transition: width .45s ease; max-width: 100%; }
+    .prog-marks { display: flex; justify-content: space-between; font-size: .72rem; color: #6e7681; margin-top: 5px; }
+
+    /* ── Scenarios ── */
+    .scen-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 12px; }
+    .scen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+    .scen-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; position: relative; overflow: hidden; }
+    .scen-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .scen-card.s1::before { background: var(--accent); }
+    .scen-card.s2::before { background: var(--green); }
+    .scen-card.s3::before { background: var(--yellow); }
+    .scen-name  { font-size: .8rem; font-weight: 700; margin-bottom: 3px; }
+    .scen-desc  { font-size: .74rem; color: var(--muted); margin-bottom: 9px; }
+    .scen-delta { font-size: 1.1rem; font-weight: 800; }
+    .scen-note  { font-size: .72rem; color: var(--muted); margin-top: 3px; }
+
+    /* ── Button ── */
+    .calc-btn {
+      width: 100%; background: var(--accent); color: #0d1117;
+      border: none; border-radius: 6px; font-size: .95rem; font-weight: 700;
+      padding: 12px; cursor: pointer; margin-top: 8px; transition: background .15s;
+    }
+    .calc-btn:hover { background: #79c0ff; }
+
+    /* ── Assumptions ── */
+    .assumptions {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px; margin-top: 20px;
+      font-size: .78rem; color: var(--muted);
+    }
+    .assumptions strong { color: var(--text); }
+    .assumptions a { color: var(--accent); }
+
+    /* ── Article link ── */
+    .art-link { text-align: center; margin-top: 28px; font-size: .85rem; color: var(--muted); }
+    .art-link a { color: var(--accent); }
+
+    /* ── Footer ── */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 20px; text-align: center; font-size: .78rem; color: var(--muted); margin-top: 60px; }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="brand">ARIA Capital Holdings</span>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/nurse-financial-independence-complete-guide.html">FI Guide</a>
+    <a href="/blog.html">Articles</a>
+  </nav>
+</header>
+
+<div class="page">
+
+  <div class="hero">
+    <h1>Nurse FI Calculator</h1>
+    <p>Find your financial independence number, years to FI, and see exactly how travel nursing, extra investments, and loan payoff speed change your timeline.</p>
+  </div>
+
+  <div class="calc-grid">
+
+    <!-- ── INPUTS ── -->
+    <div class="card">
+      <div class="card-title">Your Numbers</div>
+
+      <div class="field">
+        <label>Current Age</label>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="age" value="28" min="18" max="70" />
+          <span class="input-suffix">yrs</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Base Annual Salary <span class="tip">(before tax)</span></label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="salary" value="88000" min="0" step="1000" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Travel Nurse Add-On <span class="tip">(annual net after housing)</span></label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="travel" value="0" min="0" step="500" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field">
+        <label>Monthly Expenses <span class="tip">(all spending)</span></label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="expenses" value="3200" min="100" step="50" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Current Savings &amp; Investments</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="savings" value="18000" min="0" step="1000" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Monthly Investment Amount</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="monthly_inv" value="1200" min="0" step="50" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Expected Annual Return <span class="tip">(7% = historical real, inflation-adjusted)</span></label>
+        <div class="range-wrap">
+          <input type="range" id="return_rate" min="3" max="12" step="0.5" value="7" />
+          <span class="range-value" id="return_display">7%</span>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="field">
+        <label>Student Loan Balance</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="loan_bal" value="55000" min="0" step="1000" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Monthly Loan Payment</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="loan_pay" value="280" min="0" step="10" />
+        </div>
+      </div>
+
+      <button class="calc-btn" onclick="calculate()">Calculate My FI Date →</button>
+    </div>
+
+    <!-- ── RESULTS ── -->
+    <div class="card">
+      <div class="card-title">Your Results</div>
+
+      <div class="big-grid">
+        <div class="big-num">
+          <div class="lbl">FI Number</div>
+          <div class="val c-accent" id="fi_number">—</div>
+          <div class="sub">25× annual expenses</div>
+        </div>
+        <div class="big-num">
+          <div class="lbl">Years to FI</div>
+          <div class="val c-green" id="years_to_fi">—</div>
+          <div class="sub" id="fi_age_label">at age —</div>
+        </div>
+        <div class="big-num">
+          <div class="lbl">Monthly Surplus</div>
+          <div class="val c-yellow" id="monthly_surplus">—</div>
+          <div class="sub">after expenses &amp; loans</div>
+        </div>
+        <div class="big-num">
+          <div class="lbl">Savings Rate</div>
+          <div class="val c-purple" id="savings_rate">—</div>
+          <div class="sub">of take-home pay</div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="prog-wrap">
+        <div class="prog-top">
+          <span>FI Journey Progress</span>
+          <span id="progress_pct">0%</span>
+        </div>
+        <div class="prog-track">
+          <div class="prog-fill" id="progress_bar" style="width:0%"></div>
+        </div>
+        <div class="prog-marks">
+          <span>$0</span><span>25%</span><span>50%</span><span>75%</span><span>FI ✓</span>
+        </div>
+      </div>
+
+      <!-- What-if scenarios -->
+      <div class="scen-title">What-If Scenarios</div>
+      <div class="scen-grid">
+        <div class="scen-card s1">
+          <div class="scen-name">+$500/mo Invested</div>
+          <div class="scen-desc">Add $500/month more to investments</div>
+          <div class="scen-delta c-accent" id="s_invest">—</div>
+          <div class="scen-note" id="s_invest_note"></div>
+        </div>
+        <div class="scen-card s2">
+          <div class="scen-name">Add Travel Nursing</div>
+          <div class="scen-desc">+$20,000/yr net travel income, fully invested</div>
+          <div class="scen-delta c-green" id="s_travel">—</div>
+          <div class="scen-note" id="s_travel_note"></div>
+        </div>
+        <div class="scen-card s3">
+          <div class="scen-name">Pay Off Loans First</div>
+          <div class="scen-desc">Redirect payment to investing after payoff</div>
+          <div class="scen-delta c-yellow" id="s_loans">—</div>
+          <div class="scen-note" id="s_loans_note"></div>
+        </div>
+      </div>
+
+      <div class="assumptions">
+        <strong>Assumptions:</strong> FI number = 25× annual expenses (4% safe withdrawal rate, Trinity Study).
+        Take-home estimated at 73% of gross salary. Travel income entered as post-tax net.
+        Compounding is annual. Returns are real (inflation-adjusted). Loan payoff uses 4.5% average rate.
+        Results are projections, not guarantees.
+        <br/><br/>
+        <strong>New to these concepts?</strong>
+        Read the <a href="/nurse-financial-independence-complete-guide.html">Nurse FI Complete Guide</a> for the full strategy.
+      </div>
+    </div>
+
+  </div><!-- /calc-grid -->
+
+  <div class="art-link">
+    Part of the <a href="/nurse-financial-independence-complete-guide.html">How Nurses Achieve Financial Independence: The Complete Guide</a>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <p>© 2026 ARIA Capital Holdings LLC · Wyoming LLC · EIN 42-3423692</p>
+  <p style="margin-top:5px;"><a href="/privacy.html">Privacy</a> · <a href="/disclaimer.html">Disclaimer</a> · <a href="/contact.html">Contact</a></p>
+  <p style="margin-top:8px; font-size:.72rem;">For educational purposes only. Not financial advice. Consult a fee-only financial advisor for personalized guidance.</p>
+</footer>
+
+<script>
+/* ────────────────────────────────────────────
+   Nurse FI Calculator — Logic
+──────────────────────────────────────────── */
+
+// ── Helpers ──
+function fmtDollar(n) {
+  if (!isFinite(n) || isNaN(n)) return '—';
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+function fmtYrs(n) {
+  if (!isFinite(n) || n > 99) return '99+ yrs';
+  if (n < 0) return '—';
+  const y = Math.round(n);
+  return y + (y === 1 ? ' yr' : ' yrs');
+}
+function fmtPct(n) {
+  if (!isFinite(n) || isNaN(n)) return '—';
+  return Math.round(n) + '%';
+}
+function getVal(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+
+// ── Core: years to hit target portfolio ──
+// start = current portfolio, monthly = monthly contribution, rate = annual %, target = FI number
+function yearsToTarget(start, monthly, rate, target) {
+  if (start >= target) return 0;
+  if (monthly <= 0) return Infinity;
+  const r = rate / 100;
+  let bal = start;
+  for (let yr = 1; yr <= 100; yr++) {
+    bal = bal * (1 + r) + monthly * 12;
+    if (bal >= target) return yr;
+  }
+  return Infinity;
+}
+
+// ── Loan payoff: months to pay off balance ──
+function monthsToPayoff(balance, monthly, annualRate) {
+  if (balance <= 0 || monthly <= 0) return 0;
+  const rM = annualRate / 100 / 12;
+  let bal = balance;
+  for (let m = 1; m <= 600; m++) {
+    bal = bal * (1 + rM) - monthly;
+    if (bal <= 0) return m;
+  }
+  return Infinity;
+}
+
+// ── Balance at a future year ──
+function balanceAt(start, monthly, rate, years) {
+  const r = rate / 100;
+  let bal = start;
+  const wholeYrs = Math.floor(years);
+  const frac = years - wholeYrs;
+  for (let y = 0; y < wholeYrs; y++) {
+    bal = bal * (1 + r) + monthly * 12;
+  }
+  // partial year
+  bal = bal * (1 + r * frac) + monthly * 12 * frac;
+  return bal;
+}
+
+// ── Main calculate ──
+function calculate() {
+  const age       = getVal('age');
+  const salary    = getVal('salary');
+  const travelInc = getVal('travel');          // annual net
+  const expMo     = getVal('expenses');
+  const savings   = getVal('savings');
+  const monthlyInv= getVal('monthly_inv');
+  const retRate   = getVal('return_rate');
+  const loanBal   = getVal('loan_bal');
+  const loanPay   = getVal('loan_pay');
+
+  // Derived
+  const takeHomeMo  = (salary * 0.73) / 12 + travelInc / 12;
+  const expYr       = expMo * 12;
+  const fi_number   = expYr * 25;
+  const surplus_mo  = takeHomeMo - expMo - loanPay;
+  const sr          = takeHomeMo > 0 ? (monthlyInv / takeHomeMo) * 100 : 0;
+
+  // Base timeline
+  const yrs    = yearsToTarget(savings, monthlyInv, retRate, fi_number);
+  const fi_age = Math.round(age + yrs);
+
+  // Progress (current savings toward FI)
+  const pctDone = fi_number > 0 ? Math.min(100, Math.round((savings / fi_number) * 100)) : 0;
+
+  // ── Scenario 1: +$500/mo ──
+  const yrs_s1  = yearsToTarget(savings, monthlyInv + 500, retRate, fi_number);
+  const diff_s1 = yrs - yrs_s1;
+
+  // ── Scenario 2: +$20K travel (invested monthly) ──
+  const yrs_s2  = yearsToTarget(savings, monthlyInv + 20000/12, retRate, fi_number);
+  const diff_s2 = yrs - yrs_s2;
+
+  // ── Scenario 3: pay loans first, redirect after ──
+  let s3_text = '', s3_note = '';
+  if (loanBal <= 0) {
+    s3_text = 'No loans entered';
+    s3_note = '';
+  } else {
+    const payoffMonths = monthsToPayoff(loanBal, loanPay, 4.5);
+    if (!isFinite(payoffMonths)) {
+      s3_text = 'Payment too low';
+      s3_note = 'Increase monthly payment';
+    } else {
+      const payoffYrs = payoffMonths / 12;
+      const balAtPayoff = balanceAt(savings, monthlyInv, retRate, payoffYrs);
+      const yrsAfter = yearsToTarget(balAtPayoff, monthlyInv + loanPay, retRate, fi_number);
+      const totalYrs3 = payoffYrs + (isFinite(yrsAfter) ? yrsAfter : Infinity);
+      const diff_s3 = yrs - totalYrs3;
+      if (isFinite(totalYrs3)) {
+        if (diff_s3 > 0.3) {
+          s3_text = '−' + fmtYrs(diff_s3) + ' faster';
+          s3_note = 'Loans clear in ' + fmtYrs(payoffYrs) + ', then redirect $' + Math.round(loanPay).toLocaleString() + '/mo';
+        } else if (diff_s3 < -0.3) {
+          s3_text = '+' + fmtYrs(Math.abs(diff_s3)) + ' slower';
+          s3_note = 'Investing while paying off beats this scenario';
+        } else {
+          s3_text = 'About the same';
+          s3_note = 'Both strategies reach FI at the same time';
+        }
+      } else {
+        s3_text = '—';
+        s3_note = 'Check inputs';
+      }
+    }
+  }
+
+  // ── Render ──
+  document.getElementById('fi_number').textContent       = fmtDollar(fi_number);
+  document.getElementById('years_to_fi').textContent     = fmtYrs(yrs);
+  document.getElementById('fi_age_label').textContent    = isFinite(yrs) ? 'at age ' + fi_age : 'increase savings rate';
+  document.getElementById('monthly_surplus').textContent = fmtDollar(surplus_mo);
+  document.getElementById('savings_rate').textContent    = fmtPct(sr);
+
+  document.getElementById('progress_bar').style.width = pctDone + '%';
+  document.getElementById('progress_pct').textContent = pctDone + '%';
+
+  // Scenario 1
+  if (isFinite(diff_s1) && diff_s1 > 0.3) {
+    document.getElementById('s_invest').textContent      = '−' + fmtYrs(diff_s1) + ' faster';
+    document.getElementById('s_invest_note').textContent = 'FI at age ' + Math.round(fi_age - diff_s1);
+  } else {
+    document.getElementById('s_invest').textContent      = 'Already FI';
+    document.getElementById('s_invest_note').textContent = '';
+  }
+
+  // Scenario 2
+  if (isFinite(diff_s2) && diff_s2 > 0.3) {
+    document.getElementById('s_travel').textContent      = '−' + fmtYrs(diff_s2) + ' faster';
+    document.getElementById('s_travel_note').textContent = 'FI at age ' + Math.round(fi_age - diff_s2);
+  } else {
+    document.getElementById('s_travel').textContent      = 'Already FI';
+    document.getElementById('s_travel_note').textContent = '';
+  }
+
+  // Scenario 3
+  document.getElementById('s_loans').textContent      = s3_text;
+  document.getElementById('s_loans_note').textContent = s3_note;
+}
+
+// ── Wire events ──
+document.getElementById('return_rate').addEventListener('input', function() {
+  document.getElementById('return_display').textContent = this.value + '%';
+  calculate();
+});
+document.querySelectorAll('input[type="number"]').forEach(function(el) {
+  el.addEventListener('input', calculate);
+});
+
+// ── Initial run ──
+document.addEventListener('DOMContentLoaded', calculate);
+</script>
+
+</body>
+</html>

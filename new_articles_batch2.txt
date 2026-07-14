@@ -1,0 +1,40 @@
+# SEO Articles Batch 2 — Diversified Topics
+# Generated: 2026-07-13
+# Total: 25 articles
+# Template: same as batch 1 (see 50-30-20-budget-rule-gen-z-2026.html)
+# Placeholder: [GUMROAD_LINK] in each article CTA
+
+--- PERSONAL FINANCE (8) ---
+article-emergency-fund-how-to-build.html
+article-debt-avalanche-vs-snowball.html
+article-first-investment-account-2026.html
+article-no-spend-challenge-rules.html
+article-high-yield-savings-account-2026.html
+article-budgeting-for-irregular-income.html
+article-compound-interest-explained.html
+article-credit-card-churning-beginners.html
+
+--- PET CARE (5) ---
+article-dog-food-cost-per-month.html
+article-cat-vet-costs-annual.html
+article-pet-insurance-worth-it.html
+article-new-puppy-costs-first-year.html
+article-best-dog-breeds-apartment.html
+
+--- CAREER DEVELOPMENT (5) ---
+article-remote-jobs-that-pay-well-2026.html
+article-linkedin-profile-tips-2026.html
+article-side-hustle-tax-guide-2026.html
+article-freelance-rates-by-skill.html
+article-work-from-home-productivity-tips.html
+
+--- FITNESS / WELLNESS (4) ---
+article-gym-vs-home-workout-cost.html
+article-cheapest-ways-to-get-fit-2026.html
+article-healthy-meal-prep-on-budget.html
+article-shift-worker-fitness-guide.html
+
+--- HOME / LIFESTYLE (3) ---
+article-home-buying-costs-hidden.html
+article-renting-vs-buying-calculator.html
+article-declutter-to-make-money.html
