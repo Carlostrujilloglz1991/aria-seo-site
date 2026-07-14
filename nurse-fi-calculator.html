@@ -185,6 +185,10 @@
     footer a { color: var(--muted); }
   </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6510170611627184" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="aria_style.css">
 </head>
 <body>
 
@@ -535,27 +539,4 @@ function calculate() {
     document.getElementById('s_travel').textContent      = '−' + fmtYrs(diff_s2) + ' faster';
     document.getElementById('s_travel_note').textContent = 'FI at age ' + Math.round(fi_age - diff_s2);
   } else {
-    document.getElementById('s_travel').textContent      = 'Already FI';
-    document.getElementById('s_travel_note').textContent = '';
-  }
-
-  // Scenario 3
-  document.getElementById('s_loans').textContent      = s3_text;
-  document.getElementById('s_loans_note').textContent = s3_note;
-}
-
-// ── Wire events ──
-document.getElementById('return_rate').addEventListener('input', function() {
-  document.getElementById('return_display').textContent = this.value + '%';
-  calculate();
-});
-document.querySelectorAll('input[type="number"]').forEach(function(el) {
-  el.addEventListener('input', calculate);
-});
-
-// ── Initial run ──
-document.addEventListener('DOMContentLoaded', calculate);
-</script>
-
-</body>
-</html>
+    document.getElementById('s_travel').te

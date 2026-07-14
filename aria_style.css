@@ -1,0 +1,914 @@
+/*
+ * ARIA Capital Holdings — Shared Stylesheet
+ * Version: 1.0 | 2026-07-13
+ * Applies to: all 1,415+ articles on aria-seo-site GitHub Pages
+ *
+ * Usage: Add to HTML <head>:
+ *   <link rel="stylesheet" href="/aria-seo-site/aria_style.css">
+ *   OR (relative, for files at root):
+ *   <link rel="stylesheet" href="aria_style.css">
+ *
+ * Inject via: python inject_shared_css.py (Session A script)
+ *
+ * Design spec: ARIA_BRAND_SPEC.md
+ * Colors: Navy #0A1628 | Gold #D4A017 | Text #1E1E2E
+ * Fonts: Inter (headings) + Georgia (body)
+ */
+
+/* ============================================================
+   0. GOOGLE FONT IMPORT
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* ============================================================
+   1. CSS CUSTOM PROPERTIES (Brand Tokens)
+   ============================================================ */
+:root {
+  /* Primary palette */
+  --aria-navy:       #0A1628;
+  --aria-navy-deep:  #12203E;
+  --aria-gold:       #D4A017;
+  --aria-gold-light: #E8C252;
+  --aria-white:      #FFFFFF;
+  --aria-offwhite:   #F5F4F0;
+  --aria-text:       #1E1E2E;
+  --aria-muted:      #6B7280;
+  --aria-teal:       #2A7A8A;
+  --aria-amber:      #F59E0B;
+  --aria-info-bg:    #EEF4FF;
+  --aria-warn-bg:    #FFF8E1;
+  --aria-success-bg: #F0FBF4;
+
+  /* Typography */
+  --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-mono:  'Courier New', Courier, monospace;
+
+  /* Type scale */
+  --font-xs:   0.75rem;
+  --font-sm:   0.875rem;
+  --font-base: 1rem;
+  --font-lg:   1.125rem;
+  --font-xl:   1.375rem;
+  --font-2xl:  1.75rem;
+  --font-3xl:  2.125rem;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+
+  /* Layout */
+  --content-width: 740px;
+  --wide-width:    960px;
+  --border-radius: 6px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: var(--font-base);
+  line-height: 1.75;
+  color: var(--aria-text);
+  background: var(--aria-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--aria-navy);
+  text-decoration: underline;
+  text-decoration-color: var(--aria-gold);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--aria-teal);
+  text-decoration-color: var(--aria-teal);
+}
+
+/* ============================================================
+   3. SITE HEADER / NAVIGATION
+   ============================================================ */
+.aria-header {
+  background: var(--aria-navy);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.aria-logo {
+  text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+
+.aria-logo-mark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.375rem;
+  color: var(--aria-white);
+  letter-spacing: 0.1em;
+}
+
+.aria-logo-sub {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.55rem;
+  color: var(--aria-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.aria-nav {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.aria-nav a {
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  padding: var(--space-xs) 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.aria-nav a:hover {
+  color: var(--aria-gold);
+  border-bottom-color: var(--aria-gold);
+}
+
+/* ============================================================
+   4. PAGE LAYOUT
+   ============================================================ */
+.aria-page {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+}
+
+/* Article wrapper (for pages that still use direct body content) */
+body > h1:first-of-type,
+body > article,
+main {
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Legacy support: pages without .aria-page wrapper */
+body > *:not(.aria-header):not(.aria-footer):not(script):not(style) {
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   5. ARTICLE HERO / TITLE AREA
+   ============================================================ */
+.article-hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+  border-bottom: 3px solid var(--aria-gold);
+  margin-bottom: var(--space-xl);
+}
+
+.article-meta {
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+  color: var(--aria-muted);
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+}
+
+.article-meta .tag {
+  background: var(--aria-navy);
+  color: var(--aria-gold);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.read-time::before { content: "⏱ "; }
+
+/* ============================================================
+   6. TYPOGRAPHY — HEADINGS
+   ============================================================ */
+h1 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--font-3xl);
+  color: var(--aria-navy);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  padding-bottom: var(--space-md);
+  border-bottom: 3px solid var(--aria-gold);
+  margin-bottom: var(--space-lg);
+}
+
+h2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--font-2xl);
+  color: var(--aria-navy);
+  line-height: 1.3;
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(212,160,23,0.3);
+}
+
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--font-xl);
+  color: var(--aria-navy-deep);
+  line-height: 1.35;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--font-lg);
+  color: var(--aria-text);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+h5, h6 {
+  font-family: var(--font-sans);
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--aria-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+/* ============================================================
+   7. TYPOGRAPHY — BODY
+   ============================================================ */
+p {
+  margin-bottom: var(--space-md);
+  max-width: 66ch;
+}
+
+strong, b {
+  font-weight: 700;
+  color: var(--aria-navy);
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: var(--font-sm);
+  color: var(--aria-muted);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(10,22,40,0.12);
+  margin: var(--space-xl) 0;
+}
+
+/* ============================================================
+   8. LISTS
+   ============================================================ */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: var(--space-md);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-xs);
+}
+
+ul li::marker {
+  color: var(--aria-gold);
+}
+
+ol li::marker {
+  color: var(--aria-navy);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+}
+
+/* ============================================================
+   9. TABLES
+   ============================================================ */
+.table-wrapper {
+  overflow-x: auto;
+  margin: var(--space-lg) 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+}
+
+thead th {
+  background: var(--aria-navy);
+  color: var(--aria-white);
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
+thead th:first-child { border-radius: var(--border-radius) 0 0 0; }
+thead th:last-child  { border-radius: 0 var(--border-radius) 0 0; }
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  vertical-align: top;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--aria-offwhite); }
+tbody tr:hover { background: var(--aria-info-bg); }
+
+/* ============================================================
+   10. CALLOUT / ALERT BLOCKS
+   ============================================================ */
+
+/* Info callout (blue) */
+.callout,
+.info-box {
+  background: var(--aria-info-bg);
+  border-left: 4px solid var(--aria-navy);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-size: var(--font-sm);
+}
+
+/* Warning callout (gold/amber) */
+.warning,
+.warn-box {
+  background: var(--aria-warn-bg);
+  border-left: 4px solid var(--aria-gold);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Hero note (full-width dark) */
+.hero-note,
+.key-takeaway {
+  background: var(--aria-navy);
+  color: var(--aria-white);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius);
+  margin: var(--space-xl) 0;
+  font-size: var(--font-sm);
+  line-height: 1.65;
+}
+
+.hero-note strong,
+.key-takeaway strong {
+  color: var(--aria-gold);
+}
+
+/* Success / tip box */
+.tip-box,
+.success-box {
+  background: var(--aria-success-bg);
+  border-left: 4px solid #22C55E;
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Quick-reference box (clinical) */
+.quick-ref {
+  background: var(--aria-navy);
+  color: var(--aria-white);
+  border: 2px solid var(--aria-gold);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius);
+  margin: var(--space-xl) 0;
+}
+
+.quick-ref h3,
+.quick-ref h4 {
+  color: var(--aria-gold);
+  margin-top: 0;
+}
+
+/* ============================================================
+   11. AD SLOTS (AdSense-friendly)
+   ============================================================ */
+
+/*
+ * Ad placement strategy (AdSense best practices):
+ * - Top: after H1, before first paragraph (leaderboard 728x90)
+ * - Mid: after 3rd–4th paragraph or between H2 sections (responsive)
+ * - Bottom: above footer (leaderboard or rectangle)
+ * Content:ad ratio stays >70% — never more than 1 ad per screen viewport.
+ */
+
+.ad-slot {
+  display: block;
+  width: 100%;
+  margin: var(--space-xl) auto;
+  text-align: center;
+  min-height: 90px;
+  background: transparent;
+}
+
+.ad-slot-top {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.ad-slot-mid {
+  margin: var(--space-2xl) auto;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: var(--space-md) 0;
+}
+
+.ad-slot-bottom {
+  margin-top: var(--space-2xl);
+}
+
+/* Label ads to comply with AdSense policies */
+.ad-slot::before {
+  content: "Advertisement";
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  color: var(--aria-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ============================================================
+   12. PRODUCT CTA (Gumroad / Resource links)
+   ============================================================ */
+.product-cta {
+  background: linear-gradient(135deg, var(--aria-navy) 0%, var(--aria-navy-deep) 100%);
+  color: var(--aria-white);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-2xl) 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.product-cta-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.product-cta-body h4 {
+  color: var(--aria-gold);
+  font-family: var(--font-sans);
+  font-size: var(--font-base);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--space-xs);
+}
+
+.product-cta-body p {
+  font-size: var(--font-sm);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: var(--space-md);
+  max-width: none;
+}
+
+.btn-cta {
+  display: inline-block;
+  background: var(--aria-gold);
+  color: var(--aria-navy);
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-cta:hover {
+  background: var(--aria-gold-light);
+  color: var(--aria-navy);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* ============================================================
+   13. NEWSLETTER CTA
+   ============================================================ */
+.newsletter-cta {
+  background: var(--aria-offwhite);
+  border: 2px solid var(--aria-gold);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.newsletter-cta h3 {
+  font-family: var(--font-sans);
+  color: var(--aria-navy);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.newsletter-cta p {
+  color: var(--aria-muted);
+  font-size: var(--font-sm);
+  max-width: none;
+  margin-bottom: var(--space-md);
+}
+
+.newsletter-cta .btn-subscribe {
+  display: inline-block;
+  background: var(--aria-navy);
+  color: var(--aria-white);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--font-sm);
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.newsletter-cta .btn-subscribe:hover {
+  background: var(--aria-navy-deep);
+  color: var(--aria-gold);
+  text-decoration: none;
+}
+
+/* ============================================================
+   14. SITE FOOTER
+   ============================================================ */
+.aria-footer {
+  background: var(--aria-navy);
+  color: rgba(255,255,255,0.7);
+  padding: var(--space-xl) var(--space-lg);
+  margin-top: var(--space-2xl);
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+}
+
+.aria-footer-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.aria-footer-brand {
+  font-weight: 700;
+  color: var(--aria-white);
+  font-size: var(--font-base);
+  letter-spacing: 0.05em;
+}
+
+.aria-footer-brand span {
+  color: var(--aria-gold);
+}
+
+.aria-footer-links {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.aria-footer-links a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.aria-footer-links a:hover {
+  color: var(--aria-gold);
+}
+
+.aria-footer-legal {
+  color: rgba(255,255,255,0.45);
+  font-size: var(--font-xs);
+  line-height: 1.6;
+}
+
+/* Legacy inline-style footer compatibility */
+footer {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-size: var(--font-sm);
+  color: var(--aria-muted);
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   15. CODE BLOCKS
+   ============================================================ */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--aria-offwhite);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--aria-navy);
+}
+
+pre {
+  background: var(--aria-navy);
+  color: var(--aria-white);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  margin: var(--space-lg) 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ============================================================
+   16. BLOCKQUOTE
+   ============================================================ */
+blockquote {
+  border-left: 4px solid var(--aria-gold);
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--aria-offwhite);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-style: italic;
+  color: var(--aria-navy-deep);
+}
+
+blockquote cite {
+  display: block;
+  font-style: normal;
+  font-size: var(--font-sm);
+  color: var(--aria-muted);
+  margin-top: var(--space-sm);
+}
+
+/* ============================================================
+   17. SHARE STRIP
+   ============================================================ */
+.share-strip {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-md) 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  margin: var(--space-xl) 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-sm);
+}
+
+.share-strip span {
+  color: var(--aria-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--font-xs);
+}
+
+.share-strip a {
+  color: var(--aria-navy);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 1.5px solid rgba(10,22,40,0.2);
+  border-radius: 4px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.share-strip a:hover {
+  border-color: var(--aria-gold);
+  color: var(--aria-gold);
+}
+
+/* ============================================================
+   18. RESPONSIVE — MOBILE
+   ============================================================ */
+
+/* Tablet: 768px and below */
+@media (max-width: 768px) {
+  :root {
+    --font-3xl: 1.75rem;
+    --font-2xl: 1.375rem;
+    --font-xl:  1.125rem;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+
+  .aria-header {
+    padding: var(--space-sm) var(--space-md);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .aria-nav {
+    gap: var(--space-md);
+  }
+
+  .aria-nav a {
+    font-size: var(--font-xs);
+  }
+
+  body > *:not(.aria-header):not(.aria-footer):not(script):not(style),
+  .aria-page {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  h1 {
+    font-size: var(--font-3xl);
+  }
+
+  h2 { font-size: var(--font-2xl); }
+  h3 { font-size: var(--font-xl); }
+
+  .product-cta {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  table {
+    font-size: var(--font-xs);
+  }
+
+  thead th, tbody td {
+    padding: 7px 10px;
+  }
+}
+
+/* Mobile: 480px and below */
+@media (max-width: 480px) {
+  :root {
+    --font-3xl: 1.5rem;
+    --font-2xl: 1.25rem;
+  }
+
+  .aria-header {
+    position: static; /* Don't cover content on very small screens */
+  }
+
+  .aria-nav {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    padding-bottom: var(--space-sm);
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  .newsletter-cta,
+  .product-cta,
+  .quick-ref {
+    padding: var(--space-md);
+  }
+
+  .share-strip {
+    flex-wrap: wrap;
+  }
+}
+
+/* Wide desktop: keep content readable, don't let lines get too long */
+@media (min-width: 900px) {
+  .aria-page,
+  body > *:not(.aria-header):not(.aria-footer):not(script):not(style) {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+}
+
+/* ============================================================
+   19. PRINT STYLES
+   ============================================================ */
+@media print {
+  .aria-header,
+  .aria-footer,
+  .ad-slot,
+  .share-strip,
+  .newsletter-cta {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+}
+
+/* ============================================================
+   20. UTILITY CLASSES
+   ============================================================ */
+.text-gold    { color: var(--aria-gold); }
+.text-navy    { color: var(--aria-navy); }
+.text-muted   { color: var(--aria-muted); font-size: var(--font-sm); }
+.text-center  { text-align: center; }
+.text-small   { font-size: var(--font-sm); }
+.font-sans    { font-family: var(--font-sans); }
+.font-serif   { font-family: var(--font-serif); }
+.mt-0  { margin-top: 0 !important; }
+.mb-0  { margin-bottom: 0 !important; }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* ============================================================
+   END OF ARIA STYLESHEET
+   aria_style.css | ARIA Capital Holdings LLC | 2026-07-13
+   ============================================================ */
